@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Printer MFD: Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .dashboard-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .dashboard-container img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .dashboard-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .dashboard-container input[type="text"],
+        .dashboard-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .dashboard-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .dashboard-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .flashes {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .flashes li {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Add the printer.jpg image -->
+        <img src="{{ url_for('static', filename='printer.jpg') }}" alt="Printer">
+        <h1>LDAP Service Credentials</h1>
+        <!-- Flash messages block -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <!-- Form for entering credentials and server IP -->
+        <form method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ username }}"><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" value="{{ password }}"><br><br>
+            <label for="serverIP">Server IP:</label>
+            <!-- Set default value for serverIP to 192.168.2.11 -->
+            <input type="text" id="serverIP" name="serverIP" value="{{ serverIP or '192.168.2.11' }}"><br><br>
+            <input type="submit" value="Connect">
+        </form>
+    </div>
+</body>
+</html>
