@@ -23,7 +23,7 @@ A short while later, after some manual tweaks, I had a **basic web-based printer
 python3 webserver.py
 ```
 
-The printer is preconfigured to use uses super-secure credentials:  `admin:password`
+The printer is preconfigured to use super-secure credentials:  `admin:password`
 
 ![](/images/printer01.png)
 
