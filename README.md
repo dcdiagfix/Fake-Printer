@@ -25,17 +25,13 @@ python3 webserver.py
 
 The printer is preconfigured to use uses super-secure credentials:  `admin:password`
 
-![](printer01.png)
+![](/images/printer01.png)
 
 Clicking **Login** authenticates with the pre-populated credentials and redirects straight to the **LDAP configuration page**. The username and password fields are already populated; clicking **Connect** attempts to verify those credentials against the configured LDAP server IP.
 
-![](printer02.png)
+![](/images/printer02.png)
 
 Using WSL (or any Linux distro), you can host your own LDAP server and configure it to **support plaintext authentication (SSF=0)**:
-
-![](printer02.png)
-
-Using WSL (or any Linux distro), you can host your own LDAP server and configure it to **support plaintext authentication (SSF=0)**
 
 ```Bash
 sudo apt install slapd ldap-utils
@@ -64,11 +60,11 @@ sudo tcpdump -SX -i eth0 tcp port 389
 
 Back on the printer’s web console, set the **Server IP** to your LDAP server and click **Connect**.  
 
-![](printer03.png)
+![](/images/printer03.png)
 
 The authentication will fail(expected), but the packet capture will show the **LDAP bind request** containing the username and **plaintext password**.
 
-![](printer04.png)
+![](/images/printer04.png)
 
 Those captured credentials can then be used for **initial access**, or fed into tools such as `crackmapexec` to enumerate and move further through the environment.
 
