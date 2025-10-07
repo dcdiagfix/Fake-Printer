@@ -1,4 +1,4 @@
-# webserver (printer emulator)
+# printer emulator (basic)
 
 This README documents how to run, configure, and safely use the small web-based printer emulator included in `webserver.zip`, I haven't documented the code as it's pretty simple to follow the below and edit for your **LAB** requirements.
 
